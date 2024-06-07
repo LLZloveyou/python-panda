@@ -3,21 +3,21 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 # 读取候选人信息，由于原始数据没有表头，需要添加表头
-candidates = pd.read_csv("weball20.txt", sep = '|',names=['CAND_ID','CAND_NAME','CAND_ICI','PTY_CD','CAND_PTY_AFFILIATION','TTL_RECEIPTS',
+candidates = pd.read_csv("python-panda\weball20.txt", sep = '|',names=['CAND_ID','CAND_NAME','CAND_ICI','PTY_CD','CAND_PTY_AFFILIATION','TTL_RECEIPTS',
                                                           'TRANS_FROM_AUTH','TTL_DISB','TRANS_TO_AUTH','COH_BOP','COH_COP','CAND_CONTRIB',
                                                           'CAND_LOANS','OTHER_LOANS','CAND_LOAN_REPAY','OTHER_LOAN_REPAY','DEBTS_OWED_BY',
                                                           'TTL_INDIV_CONTRIB','CAND_OFFICE_ST','CAND_OFFICE_DISTRICT','SPEC_ELECTION','PRIM_ELECTION','RUN_ELECTION'
                                                           ,'GEN_ELECTION','GEN_ELECTION_PRECENT','OTHER_POL_CMTE_CONTRIB','POL_PTY_CONTRIB',
                                                           'CVG_END_DT','INDIV_REFUNDS','CMTE_REFUNDS'])
 # 读取候选人和委员会的联系信息
-ccl = pd.read_csv("ccl.txt", sep = '|',names=['CAND_ID','CAND_ELECTION_YR','FEC_ELECTION_YR','CMTE_ID','CMTE_TP','CMTE_DSGN','LINKAGE_ID'])
+ccl = pd.read_csv("python-panda\ccl.txt", sep = '|',names=['CAND_ID','CAND_ELECTION_YR','FEC_ELECTION_YR','CMTE_ID','CMTE_TP','CMTE_DSGN','LINKAGE_ID'])
 # 关联两个表数据
 ccl = pd.merge(ccl,candidates)
 # 提取出所需要的列
 ccl = pd.DataFrame(ccl, columns=[ 'CMTE_ID','CAND_ID', 'CAND_NAME','CAND_PTY_AFFILIATION'])
 # 读取个人捐赠数据，由于原始数据没有表头，需要添加表头
 # 提示：读取本文件大概需要5-10s
-itcont = pd.read_csv('itcont_2020_20200722_20200820.txt', sep='|',names=['CMTE_ID','AMNDT_IND','RPT_TP','TRANSACTION_PGI',
+itcont = pd.read_csv('python-panda\itcont_2020_20200718_20200801.txt', sep='|',names=['CMTE_ID','AMNDT_IND','RPT_TP','TRANSACTION_PGI',
                                                                                   'IMAGE_NUM','TRANSACTION_TP','ENTITY_TP','NAME','CITY',
                                                                                   'STATE','ZIP_CODE','EMPLOYER','OCCUPATION','TRANSACTION_DT',
                                                                                   'TRANSACTION_AMT','OTHER_ID','TRAN_ID','FILE_NUM','MEMO_CD',
@@ -77,8 +77,8 @@ number_j=len(by_occupation) #职业的总数量
 
 print('州的总数:{}'.format(number))
 print('支持BIDEN, JOSEPH R JR州的数量:{}'.format(number_b))
-print('支持特朗州的数量:{}'.format(number_t))
+print('支持特朗普 州的数量:{}'.format(number_t))
 
 print('职业的总数:{}'.format(number_j))
 print('支持BIDEN, JOSEPH R JR的数量：{}'.format(len(e)))
-print('支持特朗的数量:{}'.format(len(r)))
+print('支持特朗普的数量:{}'.format(len(r)))
